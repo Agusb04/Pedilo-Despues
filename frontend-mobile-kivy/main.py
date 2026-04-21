@@ -137,8 +137,9 @@ class MyApp(MDApp):
         self.sm.add_widget(PromoScreen(name='promos_view'))
         self.sm.add_widget(ErrorScreen(name='error_view'))
 
+      
+        self.title = "Pedilo Despues Delivery Client"
 
-        return self.sm
 
 
     def cambiar_vista(self):
