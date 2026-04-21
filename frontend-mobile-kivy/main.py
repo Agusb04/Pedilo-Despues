@@ -7,7 +7,7 @@ from kivy.clock import Clock
 from kivymd.uix.screen import Screen
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.dialog import MDDialog
-import hashlib
+import os
 
 class MainScreen(Screen):
     pass
@@ -139,8 +139,9 @@ class MyApp(MDApp):
 
       
         self.title = "Pedilo Despues Delivery Client"
+        self.icon = os.path.join(os.path.dirname(__file__), "logo.png")
 
-
+        return self.sm
 
     def cambiar_vista(self):
         self.sm.current = "second_view"

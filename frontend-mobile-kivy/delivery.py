@@ -9,7 +9,7 @@ from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.dialog import MDDialog
 from kivy.clock import mainthread
 import json
-
+import os
 
 class SecondScreen(Screen):
 
@@ -104,6 +104,7 @@ class MyApp(MDApp):
         self.sm = ScreenManager()
         self.sm.add_widget(SecondScreen(name='second_view'))
         self.title = "PediloDespues Delivery App"
+        self.icon = os.path.join(os.path.dirname(__file__), "logo.png")
         return self.sm
 
 
