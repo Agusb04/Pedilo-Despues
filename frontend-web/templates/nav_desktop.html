@@ -1,0 +1,13 @@
+<div class="nav-desktop-container">
+    <header class="header">
+        <img src="{{ url_for('static', filename='/images/logos/logo-nav.png') }}" alt="logo">
+        <nav class="navbar">
+            <ul class="desktop-navbar">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('seguimiento') }}">Seguimiento</a></li>
+                <li><a href="{{ url_for('aboutUs') }}">About Us</a></li>
+                <li><a href="{{ url_for('carrito') }}" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+</div>

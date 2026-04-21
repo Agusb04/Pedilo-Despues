@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Carrito ★ PediloDespues
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrito.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="container-principal my-4">
+        <div class="row jc">
+            <h1>Carrito de Pedidos</h1>
+            <button class="carrito-btn-vaciar">Vaciar Carrito</button>
+        </div>
+        <div id="container-promos" class="row">
+        </div>
+        <div class="container-resumen mt-4">
+            <h4>Total: $<span id="total-precio">0.00</span></h4>
+            <a href=" {{ url_for('detallesEnvio') }} "><button id="confirmar-pedido" class="btn btn-success">Confirmar</button></a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/carro.js') }}"></script>
+{% endblock %}
