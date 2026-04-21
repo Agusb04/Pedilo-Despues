@@ -1,12 +1,16 @@
+from dotenv import load_dotenv
 import mysql.connector
 from mysql.connector import Error
+import os
+
+load_dotenv()
 
 def check_database_and_table():
     try:
         conexion = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="12345678"
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD")
         )
 
         if conexion.is_connected():
@@ -18,7 +22,6 @@ def check_database_and_table():
             if database_exists:
                 print("La base de datos 'proyecto' existe")
 
-                
                 conexion.database = 'proyecto'
 
                 cursor.execute("SHOW TABLES LIKE 'Productos'")
@@ -32,7 +35,7 @@ def check_database_and_table():
 
     except Error as e:
         print("Error:", e)
-    
+
     finally:
         if conexion.is_connected():
             cursor.close()

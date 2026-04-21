@@ -1,6 +1,14 @@
-from sqlalchemy import create_engine
-from sqlalchemy import text
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
+import os
+
+load_dotenv()
+
+engine = create_engine(
+    f"mysql+mysqlconnector://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
+    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+)
 
 PRODUCTOS_GET_ALL = "SELECT * FROM Productos"
 PRODUCTOS_GET_BY_ID = "SELECT Descripcion, Precio, Categoria FROM Productos WHERE Descripcion = :Descripcion"
@@ -26,9 +34,9 @@ VALUES (:id_trackeo, :Total, :Payload, :Estado)
 """
 
 QR_GET_ALL = "SELECT * FROM QR"
-    
+
+
 def ejecutarSQL(query, parameters=None):
-    engine = create_engine("mysql+mysqlconnector://root:12345678@localhost:3306/proyecto")
     try:
         with engine.connect() as conn:
             result = conn.execute(text(query), parameters)
@@ -37,3 +45,6 @@ def ejecutarSQL(query, parameters=None):
     except SQLAlchemyError as e:
         print(f"Error en la consulta: {e}")
         return None
+
+
+        

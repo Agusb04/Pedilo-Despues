@@ -91,19 +91,34 @@ pip install -r requirements.txt
 
 Repetir el proceso para `frontend-web` y `app-mobile-kivy`.
 
+### 3. Configurar variables de entorno (solo backend)
+
+En la carpeta `backend/`, crear un archivo `.env` basado en el `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+Completar los valores en el `.env`:
+
+```
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=proyecto
+DB_USER=root
+DB_PASSWORD=tu_contraseña
+```
+
+> El archivo `.env` ya está incluido en `.gitignore` y nunca se sube al repositorio.
+
 ---
 
 ## 🗄️ Base de datos
 
-| Parámetro | Valor |
-|-----------|-------|
-| Usuario | `root` |
-| Contraseña | `12345678` |
-| Base de datos | `proyecto` |
-
 Crear las tablas ejecutando:
 
 ```bash
+cd backend
 python crear_base.py
 ```
 

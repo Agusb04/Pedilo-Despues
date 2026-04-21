@@ -1,12 +1,16 @@
+from dotenv import load_dotenv
 import mysql.connector
 from mysql.connector import Error
+import os
+
+load_dotenv()
 
 def crear_base_datos():
     try:
         conexion = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="12345678"
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD")
         )
 
         if conexion.is_connected():
@@ -14,10 +18,10 @@ def crear_base_datos():
             cursor = conexion.cursor()
             cursor.execute("CREATE DATABASE IF NOT EXISTS proyecto")
             print("Base de datos 'proyecto' lista")
-        
+
     except Error as e:
         print("Error:", e)
-    
+
     finally:
         if conexion.is_connected():
             cursor.close()
@@ -27,10 +31,10 @@ def crear_base_datos():
 def cargar_tablas():
     try:
         conexion = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="12345678",
-            database="proyecto"
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME")
         )
 
         if conexion.is_connected():
@@ -42,12 +46,12 @@ def cargar_tablas():
             for comando in script:
                 if comando.strip():
                     cursor.execute(comando)
-            
+
             print("Tablas creadas")
 
     except Error as e:
         print("Error :", e)
-    
+
     finally:
         if conexion.is_connected():
             cursor.close()
