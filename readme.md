@@ -139,30 +139,6 @@ python main.py
 
 ---
 
-## 🔗 Endpoints principales
-
-### Productos
-
-| Método | Ruta | Descripción |
-|---|---|---|
-| `GET` | `/productos` | Lista todos los productos disponibles |
-
-### Tickets
-
-| Método | Ruta | Descripción |
-|---|---|---|
-| `POST` | `/ticket` | Crea un nuevo pedido y genera un ticket |
-| `GET` | `/ticket/<id>` | Obtiene los detalles de un ticket |
-| `GET` | `/ticket/<id>/estado` | Consulta el estado actual del pedido |
-| `PUT` | `/ticket` | Actualiza el estado de un ticket |
-
-### QR / Promociones
-
-| Método | Ruta | Descripción |
-|---|---|---|
-| `GET` | `/qr` | Genera o valida un código QR de promoción |
-
----
 
 ## 🎯 Funcionalidades
 
