@@ -1,18 +1,44 @@
-# 🍔 PediloDespues - Sistema de Pedidos
+# 🍔 PediloDespues
 
-> Trabajo práctico — Facultad de Ingeniería (UBA)  
-> Introducción al Desarrollo de Software · Cátedra Lanzillotta
+> Plataforma de pedidos online con seguimiento en tiempo real, app móvil y promociones por QR.
+
+**Trabajo Práctico · Facultad de Ingeniería (UBA)**  
+Introducción al Desarrollo de Software · Cátedra Lanzillotta
+
+---
+
+## 👥 Integrantes
+
+| Nombre |
+|--------|
+| Juan Valentín Marcos |
+| Leonel Rodrigo Rolón |
+| Iván Poggio |
+| Angela Alcon |
+| Karel Leire Luna García |
+| Agustín Beltrame |
+| Jordan Ticona |
 
 ---
 
 ## 📌 Descripción
 
-**PediloDespues** es una plataforma de pedidos full stack que permite a los usuarios realizar compras online, generar un ticket con ID de seguimiento, consultar el estado del pedido en tiempo real y utilizar promociones mediante códigos QR.
+PediloDespues es una plataforma de pedidos full stack que permite a los usuarios realizar compras online, generar un ticket con ID de seguimiento, consultar el estado del pedido en tiempo real y utilizar promociones mediante códigos QR.
 
-El sistema está compuesto por:
+El sistema está diseñado con interfaz responsive, adaptándose automáticamente según el dispositivo utilizado (navegador de escritorio o móvil).
+
+---
+
+## 🏗️ Arquitectura
+
+```
+Frontend Web  (puerto 5000) ──┐
+                              ├──▶  API Flask (puerto 5001)  ──▶  MySQL
+App Kivy                    ──┘
+```
 
 | Módulo | Tecnología |
-|---|---|
+|--------|------------|
 | 🌐 Frontend Web | Flask + HTML/CSS/JS |
 | ⚙️ Backend API | Flask + MySQL |
 | 📱 App Móvil | Kivy |
@@ -20,28 +46,19 @@ El sistema está compuesto por:
 
 ---
 
-## 🏗️ Arquitectura
-
-```
-Frontend Web  ──┐
-                ├──▶  API Flask (puerto 5001)  ──▶  MySQL
-App Kivy      ──┘
-```
-
----
-
 ## 🚀 Tecnologías
 
-### Frontend Web
+**Frontend Web**
 - Python · Flask · Jinja2
 - HTML / CSS / JavaScript
 - LocalStorage (carrito de compras)
+- Diseño responsive (desktop + mobile)
 
-### Backend
+**Backend**
 - Python · Flask
 - MySQL · SQLAlchemy / MySQL Connector
 
-### App móvil
+**App móvil**
 - Python · Kivy
 
 ---
@@ -57,80 +74,64 @@ cd pedilo-despues
 
 ### 2. Instalar dependencias
 
-Cada módulo tiene su propio entorno virtual y su propio `requirements.txt`. Se recomienda crear un `.venv` por separado en cada carpeta para aislar las dependencias.
+Cada módulo tiene su propio entorno virtual y su propio `requirements.txt`. Se recomienda crear un `.venv` por separado en cada carpeta.
 
 ```bash
-# Ejemplo para el backend (repetir lo mismo en frontend-web y app-mobile-kivy)
 cd backend
 python -m venv .venv
 
-# Activar el entorno virtual:
-# En Windows:
+# Activar entorno:
+# Windows:
 .venv\Scripts\activate
-# En macOS/Linux:
+# macOS/Linux:
 source .venv/bin/activate
 
-# Instalar dependencias del módulo:
 pip install -r requirements.txt
 ```
 
-> 💡 Recordá activar el `.venv` correspondiente cada vez que vayas a levantar un módulo.
+Repetir el proceso para `frontend-web` y `app-mobile-kivy`.
 
 ---
 
 ## 🗄️ Base de datos
 
-**Configuración MySQL requerida:**
-
 | Parámetro | Valor |
-|---|---|
+|-----------|-------|
 | Usuario | `root` |
 | Contraseña | `12345678` |
 | Base de datos | `proyecto` |
 
-> ⚠️ Se recomienda cambiar las credenciales antes de desplegar en un entorno no local.
-
-### Opción A — Crear tablas con script
+Crear las tablas ejecutando:
 
 ```bash
 python crear_base.py
 ```
 
-### Opción B — Importar SQL
+O importar desde el archivo SQL:
 
 ```bash
 mysql -u root -p proyecto < database/base_datos.sql
-```
-
-### Cargar datos iniciales
-
-Una vez levantado el backend, ejecutar:
-
-```
-GET /cargardatos
 ```
 
 ---
 
 ## ▶️ Ejecución
 
-### 1. Backend (API)
+**Backend** (puerto 5001)
 
 ```bash
 cd backend
 python app.py
-# Escucha en http://localhost:5001
 ```
 
-### 2. Frontend Web
+**Frontend Web** (puerto 5000)
 
 ```bash
 cd frontend-web
 python app.py
-# Escucha en http://localhost:5000
 ```
 
-### 3. App móvil (Kivy)
+**App móvil**
 
 ```bash
 cd app-mobile-kivy
@@ -139,26 +140,12 @@ python main.py
 
 ---
 
-
 ## 🎯 Funcionalidades
 
-- 🛒 Carrito de compras persistido con LocalStorage
-- 🎫 Generación de ticket con ID de seguimiento único
-- 📡 Consulta de estado del pedido en tiempo real
-- 🔄 Actualización de estados por el administrador
-- 📲 App móvil para tracking de pedidos
-- 🏷️ Promociones mediante códigos QR
-
----
-
-## 👥 Integrantes
-
-| Nombre |
-|---|
-| Juan Valentín Marcos |
-| Leonel Rodrigo Rolón |
-| Iván Poggio |
-| Angela Alcon |
-| Karel Leire Luna García |
-| Agustín Beltrame |
-| Jordan Ticona |
+- 🛒 Carrito de compras persistente
+- 🎫 Tickets con ID único de seguimiento
+- 📡 Estado del pedido en tiempo real
+- 🔄 Panel de administración de pedidos
+- 📲 App móvil para tracking
+- 🏷️ Promociones con QR
+- 📱💻 Interfaz responsive (mobile + desktop)
